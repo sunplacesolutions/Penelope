@@ -10,7 +10,7 @@ XX    XX  SSSSS
   XXXX    SSSSS  ee   e cc     
  XX  XX       SS eeeee  cc     
 XX    XX  SSSSS   eeeee  ccccc 
-            XSec
+            Security Team
     '''
     print(banner)
 
