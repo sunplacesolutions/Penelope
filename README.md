@@ -1,6 +1,6 @@
 # Penelope - Buscar Subdominios con XSec Security Team
 Este script permite buscar subdominios, filtrarlos, y detectar posibles sitios vulnerables de un dominio específico. Utiliza herramientas como assetfinder, httprobe y subzy para realizar un análisis completo y muestra un banner personalizado de "XSec" al inicio de su ejecución.
-
+![Penelope] (https://github.com/sunplacesolutions/Penelope/blob/main/penelope.jpg)
 # Características
 Búsqueda de Subdominios: Encuentra subdominios de un dominio ingresado utilizando assetfinder.
 
