@@ -31,11 +31,13 @@ python3 buscar_subdominios.py
 
 # Ingresa el dominio cuando el script lo solicite. El script generará tres archivos de resultados:
 
-<domain>_subdomains.txt: Lista de subdominios encontrados.
-
-<domain>_httprobe.txt: Lista de subdominios válidos.
-
-<domain>_vulnerables.txt: Lista de sitios potencialmente vulnerables.
+Ingrese el dominio a analizar: ejemplo.com
+[+] Buscando subdominios para: ejemplo.com
+[+] Subdominios guardados en ejemplo_com_subdomains.txt
+[+] Filtrando subdominios válidos con httprobe...
+[+] Subdominios válidos guardados en ejemplo_com_httprobe.txt
+[+] Ejecutando subzy en los subdominios válidos...
+[*] ¡Sitios vulnerables encontrados y guardados en ejemplo_com_vulnerables.txt!
 
 Si se encuentran sitios vulnerables, se mostrará un mensaje en pantalla resaltado en rojo y en negrita.
 
