@@ -15,7 +15,7 @@ Alerta de Sitios Vulnerables: Muestra en pantalla un mensaje si se encuentran si
 # Requisitos Previos
 Asegúrate de tener instaladas las siguientes herramientas:
 
-assetfinder - httprobe - subzy
+assetfinder - httprobe - subzy - 
 termcolor: Para el mensaje de sitios Vulnerables (instalación: pip install termcolor).
 
 # Uso
