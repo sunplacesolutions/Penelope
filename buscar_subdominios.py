@@ -1,6 +1,18 @@
 import subprocess
-import sys
 import os
+from termcolor import colored
+
+def print_banner():
+    banner = '''
+    
+XX    XX  SSSSS                
+ XX  XX  SS        eee    cccc 
+  XXXX    SSSSS  ee   e cc     
+ XX  XX       SS eeeee  cc     
+XX    XX  SSSSS   eeeee  ccccc 
+            XSec
+    '''
+    print(banner)
 
 def run_command(command):
     """Ejecuta un comando de shell y captura la salida."""
@@ -11,48 +23,59 @@ def run_command(command):
         print(f"Error al ejecutar el comando {command}: {e}")
         sys.exit(1)
 
+def save_to_file(filename, data):
+    """Guarda los datos en un archivo sin modificaciones."""
+    with open(filename, "w") as f:
+        f.write("\n".join(data))
+
 def main(domain):
+    print_banner()
+    
     # Paso 1: Obtener subdominios con assetfinder
     print(f"[+] Buscando subdominios para: {domain}")
     assetfinder_cmd = f"assetfinder --subs-only {domain}"
     subdomains = run_command(assetfinder_cmd)
     
-    # Guardar subdominios en archivo
+    # Guardar subdominios sin modificaciones en archivo específico
     subdomain_file = f"{domain}_subdomains.txt"
-    with open(subdomain_file, "w") as f:
-        f.write("\n".join(subdomains))
-    
+    save_to_file(subdomain_file, subdomains)
+    print(f"[+] Subdominios guardados en {subdomain_file}")
+
     # Paso 2: Filtrar subdominios válidos con httprobe
     print(f"[+] Filtrando subdominios válidos con httprobe...")
     httprobe_cmd = f"cat {subdomain_file} | httprobe -t 40000"
     valid_subdomains = run_command(httprobe_cmd)
     
-    # Guardar subdominios válidos en archivo
+    # Guardar subdominios válidos sin modificaciones en archivo específico
     httprobe_file = f"{domain}_httprobe.txt"
-    with open(httprobe_file, "w") as f:
-        f.write("\n".join(valid_subdomains))
-    
-    # Paso 3: Ejecutar subzy en los subdominios válidos y guardar la salida en vulnerables.txt
+    save_to_file(httprobe_file, valid_subdomains)
+    print(f"[+] Subdominios válidos guardados en {httprobe_file}")
+
+    # Paso 3: Ejecutar subzy en los subdominios válidos
     print(f"[+] Ejecutando subzy en los subdominios válidos...")
-    subzy_cmd = f"subzy r --targets {httprobe_file}"
     
-    try:
-        result = subprocess.run(subzy_cmd, shell=True, capture_output=True, text=True)
-        subzy_output = result.stdout
-        with open(f"{domain}_vulnerables.txt", "w") as f:
-            f.write(subzy_output)
-        print(f"[+] Resultados guardados en {domain}_vulnerables.txt")
-    except Exception as e:
-        print(f"Error al ejecutar subzy: {e}")
-        sys.exit(1)
+    # Leer y ordenar subdominios válidos, eliminando duplicados
+    with open(httprobe_file, "r") as f:
+        unique_sorted_valid_subdomains = sorted(set(f.read().splitlines()))
+    
+    # Guardar la lista ordenada y única de subdominios válidos para subzy
+    sorted_httprobe_file = f"{domain}_httprobe_sorted.txt"
+    save_to_file(sorted_httprobe_file, unique_sorted_valid_subdomains)
+    
+    # Ejecutar subzy
+    subzy_cmd = f"subzy r --targets {sorted_httprobe_file}"
+    vulnerable_sites = run_command(subzy_cmd)
+    
+    # Guardar sitios vulnerables en archivo específico
+    vulnerable_file = f"{domain}_vulnerables.txt"
+    save_to_file(vulnerable_file, sorted(set(vulnerable_sites)))
+    
+    if vulnerable_sites:
+        print(f"[+] Resultados guardados en {vulnerable_file}")
+        print(colored(f"[*] ¡Sitios vulnerables encontrados y guardados en {vulnerable_file}!", "red", attrs=["bold"]))
+    else:
+        print("[*] No se encontraron sitios vulnerables.")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Uso: python buscar_subdominios.py <dominio>")
-        sys.exit(1)
-
-    # Capturar el dominio de los argumentos
-    domain = sys.argv[1]
-
-    # Ejecutar el script principal
+    domain = input("Ingrese el dominio a analizar: ")
     main(domain)
