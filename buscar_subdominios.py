@@ -1,18 +1,6 @@
 import subprocess
+import sys
 import os
-from termcolor import colored
-
-def print_banner():
-    banner = '''
-    
-XX    XX  SSSSS                
- XX  XX  SS        eee    cccc 
-  XXXX    SSSSS  ee   e cc     
- XX  XX       SS eeeee  cc     
-XX    XX  SSSSS   eeeee  ccccc 
-            Security team
-    '''
-    print(banner)
 
 def run_command(command):
     """Ejecuta un comando de shell y captura la salida."""
