@@ -29,18 +29,8 @@ cd Penelope
 
 python3 buscar_subdominios.py
 
-# Ingresa el dominio cuando el script lo solicite. El script generará tres archivos de resultados:
-
-Ingrese el dominio a analizar: ejemplo.com
-[+] Buscando subdominios para: ejemplo.com
-[+] Subdominios guardados en ejemplo_com_subdomains.txt
-[+] Filtrando subdominios válidos con httprobe...
-[+] Subdominios válidos guardados en ejemplo_com_httprobe.txt
-[+] Ejecutando subzy en los subdominios válidos...
-[*] ¡Sitios vulnerables encontrados y guardados en ejemplo_com_vulnerables.txt!
-
-Si se encuentran sitios vulnerables, se mostrará un mensaje en pantalla resaltado en rojo y en negrita.
-
+# Ingresa el dominio cuando el script lo solicite. 
+# El script generará tres archivos de resultados:
 # Ejemplo de Ejecución
 
 Ingrese el dominio a analizar: ejemplo.com
@@ -56,6 +46,8 @@ Ingrese el dominio a analizar: ejemplo.com
 [+] Ejecutando subzy en los subdominios válidos...
 
 [*] ¡Sitios vulnerables encontrados y guardados en ejemplo_com_vulnerables.txt!
+
+Si se encuentran sitios vulnerables, se mostrará un mensaje en pantalla resaltado en rojo y en negrita.
 
 # Notas
 Archivos de Salida: Cada archivo de salida se genera aplicando sort y uniq, eliminando duplicados y ordenando los subdominios alfabéticamente.
