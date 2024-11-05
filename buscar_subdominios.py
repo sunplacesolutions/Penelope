@@ -46,7 +46,7 @@ def main(domain):
     
     # Paso 3: Ejecutar subzy en los subdominios válidos y guardar la salida en vulnerables.txt
     print(f"[+] Ejecutando subzy en los subdominios válidos...")
-    subzy_cmd = f"subzy -targets {httprobe_file}"
+    subzy_cmd = f"subzy r --targets {httprobe_file}"
     
     try:
         result = subprocess.run(subzy_cmd, shell=True, capture_output=True, text=True)
