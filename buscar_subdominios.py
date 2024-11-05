@@ -1,16 +1,19 @@
 import subprocess
 import os
+import sys  # Importar sys para usar sys.exit
 from termcolor import colored
 
 def print_banner():
     banner = '''
     
-XX    XX  SSSSS                
- XX  XX  SS        eee    cccc 
-  XXXX    SSSSS  ee   e cc     
- XX  XX       SS eeeee  cc     
-XX    XX  SSSSS   eeeee  ccccc 
-            Security Team
+██████╗ ███████╗███╗   ██╗███████╗██╗      ██████╗ ██████╗ ███████╗
+██╔══██╗██╔════╝████╗  ██║██╔════╝██║     ██╔═══██╗██╔══██╗██╔════╝
+██████╔╝█████╗  ██╔██╗ ██║█████╗  ██║     ██║   ██║██████╔╝█████╗  
+██╔═══╝ ██╔══╝  ██║╚██╗██║██╔══╝  ██║     ██║   ██║██╔═══╝ ██╔══╝  
+██║     ███████╗██║ ╚████║███████╗███████╗╚██████╔╝██║     ███████╗
+╚═╝     ╚══════╝╚═╝  ╚═══╝╚══════╝╚══════╝ ╚═════╝ ╚═╝     ╚══════╝
+                                                                   
+            XSec Security Team !!
     '''
     print(banner)
 
@@ -77,5 +80,9 @@ def main(domain):
         print("[*] No se encontraron sitios vulnerables.")
 
 if __name__ == "__main__":
-    domain = input("Ingrese el dominio a analizar: ")
-    main(domain)
+    try:
+        domain = input("Ingrese el dominio a analizar: ")
+        main(domain)
+    except KeyboardInterrupt:
+        print("\nEl script fue interrumpido de manera segura.")
+        sys.exit(0)  # Salida limpia sin errores
