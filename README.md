@@ -19,10 +19,10 @@ Asegúrate de tener instaladas las siguientes herramientas:
 # Uso
 # Clona este repositorio:
 
-# git clone 
-# cd 
+# git clone https://github.com/sunplacesolutions/Penelope.git
+# cd Penelope
 # Ejecuta el script e ingresa el dominio que deseas analizar:
-# python3 buscar_subdominio.py
+# python3 buscar_subdominios.py
 
 # Ingresa el dominio cuando el script lo solicite. El script generará tres archivos de resultados:
 
