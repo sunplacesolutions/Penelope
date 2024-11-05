@@ -20,15 +20,21 @@ termcolor: Para el mensaje de sitios Vulnerables (instalación: pip install term
 # Clona este repositorio:
 
 git clone https://github.com/sunplacesolutions/Penelope.git
+
 cd Penelope
+
 # Ejecuta el script e ingresa el dominio que deseas analizar:
+
 python3 buscar_subdominios.py
 
 # Ingresa el dominio cuando el script lo solicite. El script generará tres archivos de resultados:
 
 <domain>_subdomains.txt: Lista de subdominios encontrados.
+
 <domain>_httprobe.txt: Lista de subdominios válidos.
+
 <domain>_vulnerables.txt: Lista de sitios potencialmente vulnerables.
+
 Si se encuentran sitios vulnerables, se mostrará un mensaje en pantalla resaltado en rojo y en negrita.
 
 # Ejemplo de Ejecución
